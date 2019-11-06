@@ -1,3 +1,5 @@
 #pycache and  distribution
 __pycache__
 *.egg-info
+#jupyter notebook cache
+.ipynb*
