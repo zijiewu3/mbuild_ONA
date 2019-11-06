@@ -1,3 +1,0 @@
-[mbuild.plugins]
-ONA_box = mbuild_ONA.mbuild_ONA:ONA_box
-

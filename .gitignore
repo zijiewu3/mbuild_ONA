@@ -1,8 +1,8 @@
 #pycache and  distribution
-__pycache__
-*.egg-info
+__pycache__/
+*.egg-info/
 #jupyter notebook cache
-.ipynb*
+.ipynb_checkpoints/
 #test output of lammps files
 *.lammps
 *.lmp
