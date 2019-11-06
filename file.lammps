@@ -1,0 +1,48 @@
+file.lammps - created by mBuild
+
+6 atoms
+3 bonds
+0 angles
+0 dihedrals
+0 impropers
+
+4 atom types
+2 bond types
+
+0.000000 108.700000 xlo xhi
+0.000000 5.000000 ylo yhi
+0.000000 5.000000 zlo zhi
+
+Masses
+
+1	1.000000	# BBA
+3	0.150000	# HBA
+2	1.000000	# BBC
+4	0.150000	# HBC
+
+Pair Coeffs # lj 
+#	epsilon (kcal/mol)		sigma (Angstrom)
+1	0.00000		0.00000		# BBA
+3	0.00000		0.00000		# HBA
+2	0.00000		0.00000		# BBC
+4	0.00000		0.00000		# HBC
+
+Bond Coeffs # harmonic
+#	k(kcal/mol/angstrom^2)		req(angstrom)
+1	1.195		3.7		# BBC	HBC
+2	1.195		3.7		# BBA	HBA
+
+Atoms
+
+1	0	1	-1.850000	-0.000000	-0.000000
+2	0	3	1.850000	0.000000	0.000000
+3	0	2	48.150000	-0.000000	-0.000000
+4	0	4	51.850000	0.000000	0.000000
+5	0	2	98.150000	-0.000000	-0.000000
+6	0	4	101.850000	0.000000	0.000000
+
+Bonds
+
+1	2	1	2
+2	1	3	4
+3	1	5	6

@@ -1,0 +1,175 @@
+<ForceField>
+ <!-- Shown below are example entries for force field parameters.
+
+ Please refer to the OpenMM .xml specs for more info:
+ http://docs.openmm.org/7.0.0/userguide/application.html#writing-the-xml-file-->
+ <AtomTypes>
+  <Type name="BBA" class="BBA" element="_BBA" mass="1" def="[_BBA]"/>
+  <Type name="BBC" class="BBC" element="_BBC" mass="1" def="[_BBC]"/>
+  <Type name="BBG" class="BBG" element="_BBG" mass="1" def="[_BBG]"/>
+  <Type name="BBT" class="BBT" element="_BBT" mass="1" def="[_BBT]"/>
+  <Type name="HBA" class="HBA" element="_HBA" mass="0.15" def="[_HBA]"/>
+  <Type name="HBC" class="HBC" element="_HBC" mass="0.15" def="[_HBC]"/>
+  <Type name="HBG" class="HBG" element="_HBG" mass="0.15" def="[_HBG]"/>
+  <Type name="HBT" class="HBT" element="_HBT" mass="0.15" def="[_HBT]"/>
+ </AtomTypes>
+
+ <HarmonicBondForce>
+  <!-- Define backbone harmonic bonds (BB-BB) for adenine (A) backbone beads. Note: units of k are in eps/sigma^2-->
+  <Bond class1="BBA" class2="BBA" length="0.84" k="1000"/>
+  <Bond class1="BBA" class2="BBT" length="0.84" k="1000"/>
+  <Bond class1="BBA" class2="BBC" length="0.84" k="1000"/>
+  <Bond class1="BBA" class2="BBG" length="0.84" k="1000"/>
+
+  <!-- Define harmonic bonds between backbone beads and h-bond beads (HB-BB) for adenine (A) backbone beads.-->
+  <Bond class1="BBA" class2="HBA" length="0.37" k="1000"/>
+
+  <!-- Define backbone harmonic bonds for thymine (T) backbone beads.-->
+  <Bond class1="BBT" class2="BBT" length="0.84" k="1000"/>
+  <Bond class1="BBT" class2="BBC" length="0.84" k="1000"/>
+  <Bond class1="BBT" class2="BBG" length="0.84" k="1000"/>
+
+  <!-- Define harmonic bonds between backbone beads and h-bond beads (HB-BB) for thymine (T) backbone beads.-->
+  <Bond class1="BBT" class2="HBT" length="0.37" k="1000"/>
+
+  <!-- Define backbone harmonic bonds for guanine (G) backbone beads.-->
+  <Bond class1="BBG" class2="BBG" length="0.84" k="1000"/>
+  <Bond class1="BBG" class2="BBC" length="0.84" k="1000"/>
+
+  <!-- Define harmonic bonds between backbone beads and h-bond beads (HB-BB) for guanine (G) backbone beads.-->
+  <Bond class1="BBG" class2="HBG" length="0.37" k="1000"/>
+
+  <!-- Define backbone harmonic bonds for cytosine (G) backbone beads.-->
+  <Bond class1="BBC" class2="BBC" length="0.84" k="1000"/>
+
+  <!-- Define harmonic bonds between backbone beads and h-bond beads (HB-BB) for adenine (A) backbone beads.-->
+  <Bond class1="BBC" class2="HBC" length="0.37" k="1000"/>
+ </HarmonicBondForce>
+ 
+ <HarmonicAngleForce>
+  <!-- Define backbone harmonic angle potentials (BB-BB-BB). Note: units of k are in eps/rad^2-->
+  <Angle class1="BBA" class2="BBA" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBA" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBA" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBA" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBA" class2="BBT" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBT" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBT" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBT" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBA" class2="BBC" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBC" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBC" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBC" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBA" class2="BBG" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBG" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBG" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBA" class2="BBG" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBT" class2="BBA" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBA" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBA" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBA" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBT" class2="BBT" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBT" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBT" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBT" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBT" class2="BBC" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBC" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBC" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBC" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBT" class2="BBG" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBG" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBG" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBT" class2="BBG" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBC" class2="BBA" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBA" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBA" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBA" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBC" class2="BBT" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBT" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBT" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBT" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBC" class2="BBC" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBC" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBC" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBC" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBC" class2="BBG" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBG" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBG" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBC" class2="BBG" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBG" class2="BBA" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBA" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBA" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBA" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBG" class2="BBT" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBT" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBT" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBT" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBG" class2="BBC" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBC" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBC" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBC" class3="BBG" angle="3.14" k="30"/>
+
+  <Angle class1="BBG" class2="BBG" class3="BBA" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBG" class3="BBT" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBG" class3="BBC" angle="3.14" k="30"/>
+  <Angle class1="BBG" class2="BBG" class3="BBG" angle="3.14" k="30"/>
+
+  <!-- Define all HB-BB-BB angle potentials-->
+  <Angle class1="HBA" class2="BBA" class3="BBA" angle="1.57" k="300"/>
+  <Angle class1="HBA" class2="BBA" class3="BBT" angle="1.57" k="300"/>
+  <Angle class1="HBA" class2="BBA" class3="BBC" angle="1.57" k="300"/>
+  <Angle class1="HBA" class2="BBA" class3="BBG" angle="1.57" k="300"/>
+
+  <Angle class1="HBT" class2="BBT" class3="BBA" angle="1.57" k="300"/>
+  <Angle class1="HBT" class2="BBT" class3="BBT" angle="1.57" k="300"/>
+  <Angle class1="HBT" class2="BBT" class3="BBC" angle="1.57" k="300"/>
+  <Angle class1="HBT" class2="BBT" class3="BBG" angle="1.57" k="300"/>
+
+  <Angle class1="HBC" class2="BBC" class3="BBA" angle="1.57" k="300"/>
+  <Angle class1="HBC" class2="BBC" class3="BBT" angle="1.57" k="300"/>
+  <Angle class1="HBC" class2="BBC" class3="BBC" angle="1.57" k="300"/>
+  <Angle class1="HBC" class2="BBC" class3="BBG" angle="1.57" k="300"/>
+  <Angle class1="HBG" class2="BBG" class3="BBA" angle="1.57" k="300"/>
+  <Angle class1="HBG" class2="BBG" class3="BBT" angle="1.57" k="300"/>
+  <Angle class1="HBG" class2="BBG" class3="BBC" angle="1.57" k="300"/>
+  <Angle class1="HBG" class2="BBG" class3="BBG" angle="1.57" k="300"/>
+
+ </HarmonicAngleForce>
+ <PeriodicTorsionForce>
+  <!-- Next, I need to include all of the HB-BB-BB-HB dihedrals. Refer to the supplementary material of Ghobadi and Jayaraman (2016) for more details-->
+  <!-- Note, the units of k are in eps-->
+  <Proper class1="HBC" class2="BBC" class3="BBC" class4="HBC" periodicity1="1" phase1="0" k1="3"/>
+  <Proper class1="HBC" class2="BBC" class3="BBT" class4="HBT" periodicity1="1" phase1="0" k1="3"/>
+  <Proper class1="HBT" class2="BBT" class3="BBC" class4="HBC" periodicity1="1" phase1="0" k1="3"/>
+  <Proper class1="HBT" class2="BBT" class3="BBT" class4="HBT" periodicity1="1" phase1="0" k1="3"/>
+  <Proper class1="HBA" class2="BBA" class3="BBT" class4="HBT" periodicity1="1" phase1="0" k1="3"/>
+  <Proper class1="HBT" class2="BBT" class3="BBA" class4="HBA" periodicity1="1" phase1="0" k1="3"/>
+
+  <Proper class1="HBG" class2="BBG" class3="BBT" class4="HBT" periodicity1="1" phase1="0" k1="6"/> 
+  <Proper class1="HBT" class2="BBT" class3="BBG" class4="HBG" periodicity1="1" phase1="0" k1="6"/> 
+  <Proper class1="HBG" class2="BBG" class3="BBC" class4="HBC" periodicity1="1" phase1="0" k1="6"/> 
+  <Proper class1="HBC" class2="BBC" class3="BBG" class4="HBG" periodicity1="1" phase1="0" k1="6"/> 
+  <Proper class1="HBA" class2="BBA" class3="BBC" class4="HBC" periodicity1="1" phase1="0" k1="6"/> 
+  <Proper class1="HBC" class2="BBC" class3="BBA" class4="HBA" periodicity1="1" phase1="0" k1="6"/> 
+
+  <Proper class1="HBG" class2="BBG" class3="BBG" class4="HBG" periodicity1="1" phase1="0" k1="9"/>
+  <Proper class1="HBA" class2="BBA" class3="BBA" class4="HBA" periodicity1="1" phase1="0" k1="9"/>
+  <Proper class1="HBG" class2="BBG" class3="BBA" class4="HBA" periodicity1="1" phase1="0" k1="9"/>
+  <Proper class1="HBA" class2="BBA" class3="BBG" class4="HBG" periodicity1="1" phase1="0" k1="9"/>
+
+ </PeriodicTorsionForce>
+</ForceField>
