@@ -3,3 +3,6 @@ __pycache__
 *.egg-info
 #jupyter notebook cache
 .ipynb*
+#test output of lammps files
+*.lammps
+*.lmp
