@@ -6,4 +6,3 @@ test_box = ONA_box(['AAC','GTAC'],[1,1,2])
 test_box.write_lammps('test.lammps')
 
 
-
