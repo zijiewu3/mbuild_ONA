@@ -20,8 +20,8 @@ import tempfile
 from warnings import warn
 ##
 from mbuild.utils.io import run_from_ipython, import_
-r0BB = 0.84
-r0BBHB = 0.37
+r0BB = 0.084
+r0BBHB = 0.037
 
 
 # In[2]:
@@ -276,7 +276,7 @@ class ONA_box(mb.Compound):
             for j in range(dim[1]):
                 for k in range(dim[2]): 
                     new_DNA = DNA(sequences[seq_num])
-                    new_DNA.translate_to([i*5,j*5,k*5])
+                    new_DNA.translate_to([i*0.5,j*0.5,k*0.5])
                     self.add(new_DNA)
                     seq_num += 1
     def visualize(self):
@@ -314,12 +314,74 @@ class ONA_box(mb.Compound):
         #apply it to the mbuild structure
         test_box_typed =cgff.apply(self,assert_dihedral_params=False)
         #Output a LAMMPS data file
-        mb.formats.lammpsdata.write_lammpsdata(test_box_typed,filename,atom_style='molecular')
+        mb.formats.lammpsdata.write_lammpsdata(test_box_typed,filename,atom_style='full')
+
+    
+    def create_lammps_input_script(self,T=4.6,script_num=1,sim_name='test.lammps',time_steps=2e6,atom_style='full',seed_1='42',seed_2='42'):
+        re = import_('re')
+	# Calculate dielectric constant (using equation from Ahmad's soft matter paper)
+        T_real = T*(0.1/8.314)*4184
+        eps_r = 249.4 - 0.788*T_real + 0.00072*(T_real**2)
+        eps_r = np.round(eps_r,decimals=5)
+
+	# Specify the name of the sample input script 
+        sample_name = 'mbuild_ONA/sample.in'
+
+	# Loop over the total number of scripts and create files 
+        for i in range(script_num):
+        # Specify input file name 
+            filename = 'test_sample' + str(i+1) + '.in'
+
+		# Treat the first input script separately
+            if (i == 0):
+			# Define substitutions
+                subs = [
+        				('T_ref',str(T)),
+        				('eps_r',str(eps_r)),
+        				('sample.dcd',sim_name + '.' + str(i+1) + '.dcd'),
+        				('sample.xyz',sim_name + '.' + str(i+1) + '.xyz'),
+        				('time_steps_a', str(int(time_steps + 1))),
+        				('time_steps_b', str(int(time_steps))),
+        				('info.dat', 'info' + str(i+1) + '.dat'),
+        				('atom_style full', 'atom_style ' + atom_style),
+        				('seed_1',seed_1),
+        				('seed_2',seed_2)
+                                        ]
+            else:
+# Replace relevant fields (Don't forget to replace read_data and data.lammps)
+                subs = [
+                    ('T_ref',str(T)),
+                    ('eps_r',str(eps_r)),
+                    ('read_data '+ sim_name,'read_restart restart.* remap'),
+                    ('sample.dcd',sim_name + '.' + str(i+1) + '.dcd'),
+                    ('sample.xyz',sim_name + '.' + str(i+1) + '.xyz'),
+                    ('time_steps_a', str(int(time_steps + 1))),
+                    ('time_steps_b', str(int(time_steps))),
+                    ('info.dat', 'info' + str(i+1) + '.dat'),
+                    ('atom_style full', 'atom_style ' + atom_style),
+                    ('seed_1',seed_1),
+                    ('seed_2',seed_2)
+                    ]
+    
+		# Read sample input script 
+            with open(sample_name) as fp:
+                text = fp.read()
+    
+            lines = text.splitlines()
+            for line_no,line in enumerate(lines):
+                for pattern,replace in subs:
+                # Do replacements
+                    lines[line_no] = re.sub(pattern,replace,lines[line_no])
+
+                # Don't re-assign velocities for i > 0 (Also, don't energy minimize)
+                if (i > 0):
+                    del lines[105:109]
+	
+                with open(filename,'w') as fp: 
+                    fp.write('\n'.join(lines))
+		
 
 
-
-
-# In[42]:
 
 
 

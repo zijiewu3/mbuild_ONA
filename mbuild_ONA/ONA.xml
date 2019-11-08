@@ -16,34 +16,34 @@
 
  <HarmonicBondForce>
   <!-- Define backbone harmonic bonds (BB-BB) for adenine (A) backbone beads. Note: units of k are in eps/sigma^2-->
-  <Bond class1="BBA" class2="BBA" length="0.84" k="836820.083682"/>
-  <Bond class1="BBA" class2="BBT" length="0.84" k="836820.083682"/>
-  <Bond class1="BBA" class2="BBC" length="0.84" k="836820.083682"/>
-  <Bond class1="BBA" class2="BBG" length="0.84" k="836820.083682"/>
+  <Bond class1="BBA" class2="BBA" length="0.084" k="836820.083682"/>
+  <Bond class1="BBA" class2="BBT" length="0.084" k="836820.083682"/>
+  <Bond class1="BBA" class2="BBC" length="0.084" k="836820.083682"/>
+  <Bond class1="BBA" class2="BBG" length="0.084" k="836820.083682"/>
 
   <!-- Define harmonic bonds between backbone beads and h-bond beads (HB-BB) for adenine (A) backbone beads.-->
-  <Bond class1="BBA" class2="HBA" length="0.37" k="836820.083682"/>
+  <Bond class1="BBA" class2="HBA" length="0.037" k="836820.083682"/>
 
   <!-- Define backbone harmonic bonds for thymine (T) backbone beads.-->
-  <Bond class1="BBT" class2="BBT" length="0.84" k="836820.083682"/>
-  <Bond class1="BBT" class2="BBC" length="0.84" k="836820.083682"/>
-  <Bond class1="BBT" class2="BBG" length="0.84" k="836820.083682"/>
+  <Bond class1="BBT" class2="BBT" length="0.084" k="836820.083682"/>
+  <Bond class1="BBT" class2="BBC" length="0.084" k="836820.083682"/>
+  <Bond class1="BBT" class2="BBG" length="0.084" k="836820.083682"/>
 
   <!-- Define harmonic bonds between backbone beads and h-bond beads (HB-BB) for thymine (T) backbone beads.-->
-  <Bond class1="BBT" class2="HBT" length="0.37" k="836820.083682"/>
+  <Bond class1="BBT" class2="HBT" length="0.037" k="836820.083682"/>
 
   <!-- Define backbone harmonic bonds for guanine (G) backbone beads.-->
-  <Bond class1="BBG" class2="BBG" length="0.84" k="836820.083682"/>
-  <Bond class1="BBG" class2="BBC" length="0.84" k="836820.083682"/>
+  <Bond class1="BBG" class2="BBG" length="0.084" k="836820.083682"/>
+  <Bond class1="BBG" class2="BBC" length="0.084" k="836820.083682"/>
 
   <!-- Define harmonic bonds between backbone beads and h-bond beads (HB-BB) for guanine (G) backbone beads.-->
-  <Bond class1="BBG" class2="HBG" length="0.37" k="836820.083682"/>
+  <Bond class1="BBG" class2="HBG" length="0.037" k="836820.083682"/>
 
   <!-- Define backbone harmonic bonds for cytosine (G) backbone beads.-->
-  <Bond class1="BBC" class2="BBC" length="0.84" k="836820.083682"/>
+  <Bond class1="BBC" class2="BBC" length="0.084" k="836820.083682"/>
 
   <!-- Define harmonic bonds between backbone beads and h-bond beads (HB-BB) for adenine (A) backbone beads.-->
-  <Bond class1="BBC" class2="HBC" length="0.37" k="836820.083682"/>
+  <Bond class1="BBC" class2="HBC" length="0.037" k="836820.083682"/>
  </HarmonicBondForce>
  
  <HarmonicAngleForce>

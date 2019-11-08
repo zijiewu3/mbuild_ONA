@@ -1,0 +1,122 @@
+
+units lj #dimensionless lj units
+
+atom_style full # use molecular for everything but electrostatic potentials, use full for everything plus electrostatic potentials
+
+read_data test.lammps # read in data file with initial coordinates, masses, bonds, etc.
+
+bond_style harmonic # harmonic bond potential
+
+angle_style harmonic # harmonic angle potential 
+
+dihedral_style harmonic # harmonic dihedral potential, please see LAMMPS documentation
+
+pair_style hybrid lj/cut/coul/long 1.0 20.0 lj/gromacs 0.57 0.6 lj/cut/opt 1.0  
+kspace_style pppm 1.0e-2 # use the particle-particle-particle-mesh (PPPM) method for electrostatics with a force tolerance of 10^-2
+dielectric eps_r # set dielectric constant calculated using Ahmad's equation
+
+pair_modify shift yes # shifts potential to 0 at cutoff
+pair_modify tail no # does not include long range VDW tail corrections
+pair_modify mix arithmetic # if pairstyles are not explicitly defined, epsij = sqrt(epsi*epsj) and sigij = (sigi+sigj)/2
+
+# Set special bonds for the electrostatic interactions (set the 1-3 and 1-4 electrostatic interactions to zero)
+special_bonds coul 1.0 0.0 0.0
+
+# Define BB-BB interactions (electrostatic for DNA)
+pair_coeff 1 1 lj/cut/coul/long 1.0 1.0 1.12246 # coefficients for 1-1 BB-BB pairwise interaction 'style' 'eps' 'sig' 'cutoff' (coeffs for WCA potential)
+pair_coeff 1 2 lj/cut/coul/long 1.0 1.0 1.12246  
+pair_coeff 1 3 lj/cut/coul/long 1.0 1.0 1.12246 
+pair_coeff 1 4 lj/cut/coul/long 1.0 1.0 1.12246 
+pair_coeff 2 2 lj/cut/coul/long 1.0 1.0 1.12246
+pair_coeff 2 3 lj/cut/coul/long 1.0 1.0 1.12246
+pair_coeff 2 4 lj/cut/coul/long 1.0 1.0 1.12246
+pair_coeff 3 3 lj/cut/coul/long 1.0 1.0 1.12246
+pair_coeff 3 4 lj/cut/coul/long 1.0 1.0 1.12246
+pair_coeff 4 4 lj/cut/coul/long 1.0 1.0 1.12246
+
+# Define BB-HB interactions
+pair_coeff 1 5 lj/cut/opt 1.0 0.65 0.72960 # G_BB-G_BB interaction
+pair_coeff 1 6 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 1 7 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 1 8 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 2 5 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 2 6 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 2 7 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 2 8 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 3 5 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 3 6 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 3 7 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 3 8 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 4 5 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 4 6 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 4 7 lj/cut/opt 1.0 0.65 0.72960 
+pair_coeff 4 8 lj/cut/opt 1.0 0.65 0.72960 
+
+# Define BB-IN interactions 
+pair_coeff 1 9 lj/cut/coul/long 1.0 0.85 0.95409 
+pair_coeff 1 10 lj/cut/coul/long 1.0 0.85 0.95409 
+pair_coeff 2 9 lj/cut/coul/long 1.0 0.85 0.95409 
+pair_coeff 1 10 lj/cut/coul/long 1.0 0.85 0.95409 
+pair_coeff 3 9 lj/cut/coul/long 1.0 0.85 0.95409 
+pair_coeff 3 10 lj/cut/coul/long 1.0 0.85 0.95409 
+pair_coeff 4 9 lj/cut/coul/long 1.0 0.85 0.95409 
+pair_coeff 4 10 lj/cut/coul/long 1.0 0.85 0.95409 
+
+# Define HB-IN interactions
+pair_coeff 5 9 lj/cut/opt 1.0 0.5 0.56123  
+pair_coeff 5 10 lj/cut/opt 1.0 0.5 0.56123  
+pair_coeff 6 9 lj/cut/opt 1.0 0.5 0.56123  
+pair_coeff 6 10 lj/cut/opt 1.0 0.5 0.56123  
+pair_coeff 7 9 lj/cut/opt 1.0 0.5 0.56123  
+pair_coeff 7 10 lj/cut/opt 1.0 0.5 0.56123  
+pair_coeff 8 9 lj/cut/opt 1.0 0.5 0.56123  
+pair_coeff 8 10 lj/cut/opt 1.0 0.5 0.56123  
+
+# Define IN-IN interactions
+pair_coeff 9 9 lj/cut/coul/long 1.0 0.7 0.78572 
+pair_coeff 9 10 lj/cut/coul/long 1.0 0.7 0.78572 
+pair_coeff 10 10 lj/cut/coul/long 1.0 0.7 0.78572 
+
+# Define HB-HB interactions
+# bead type 5: A; type 6: T; type 7: C; type 8: G
+pair_coeff 5 5 lj/cut/opt 1.0 0.7 0.78572 # repulsive shell
+pair_coeff 5 6 lj/cut/opt 1.0 0.3 0.33674
+pair_coeff 5 7 lj/cut/opt 1.0 0.3 0.33674 
+pair_coeff 5 8 lj/gromacs 50.0 0.3 0.57 0.6 # HBA-HBT interactions
+pair_coeff 6 6 lj/cut/opt 1.0 0.7 0.78572 # repulsive shell
+pair_coeff 6 7 lj/gromacs 61.0 0.3 0.57 0.6 # HBC-HBG interactions 
+pair_coeff 6 8 lj/cut/opt 1.0 0.3 0.33674 
+pair_coeff 7 7 lj/cut/opt 1.0 0.7 0.78572 # repulsive shell
+pair_coeff 7 8 lj/cut/opt 1.0 0.3 0.33674
+pair_coeff 8 8 lj/cut/opt 1.0 0.7 0.78572 # repulsive shell
+
+thermo_style custom step press temp pe ke lx # style of thermo file output (shows up in log file) 'timestep' 'potential energy' 'kinetic energy' 'simulation box length'
+thermo_modify flush yes norm no # flush ensures info is current, norm no means the info is not normalized by number of atoms
+thermo 50000 # output thermo data every 50000 timesteps
+
+restart  1000000 restart.1 restart.2 # have restart files printed out every 1000000 timesteps
+
+neighbor 1.0 bin # sets how neighbor lists are set up 'skin distance' 'binning'
+neigh_modify every 2 delay 0 check yes one 4000 # how often neighbor lists are set up 'every 2 timesteps' 'do not delay' 'check if one needs to be rebuilt' '4000 is max number of neighbors one atom can have'
+timestep 0.001  
+run_style respa 2 2 bond 1 angle 1 dihedral 1 pair 2 kspace 2 # rRESPA integration scheme 'number of levels' 'looping factor from level 1 to 2' 'which level each integration takes place on'
+
+variable step equal step # setting the step variable
+
+velocity all create T_ref seed_1 dist gaussian # give velocities to all atoms with 'temp = T_ref' 'RNG_seed = seed_1' RNG_seed should be new for each replicate 'gaussian distribution of tvelocities'
+
+minimize 1.0e-4 1.0e-6 1000 1000 # energy minimization by adjusting atom coordinates 'energy tolerance' 'force tolerance' 'max number of iterations' 'max number of force evaluations'
+reset_timestep 0 # reset the timestep
+
+#dump eqDump all custom 1000000 dump_eq.txt id mol type x y z vx vy vz ix iy iz # dumping out atom coordinates to dump file
+#dump_modify eqDump flush yes sort id append yes first no
+
+fix 1 all nve # fix with nve so langevin dynamics can be used -> results in nvt ensemble
+fix 2 all langevin T_ref T_ref 10 seed_2 zero yes # langevin dynamics with drag constant 10 fit to account for diffusivity in implicit solvent. Again RNG_seed must be changed for each replicate
+fix s1 all shake 0.001 10 50000 b 3 # shake algorithm to ensure specified bond lengths at each step 'tolerance' 'max number of iterations' 'print out to the log file every 50000 timesteps' 'bond 2'
+
+dump 1 all dcd 1000 sample.dcd
+dump 2 all xyz time_steps_a sample.xyz
+run time_steps_b  # run up to the timestep 100000000 and print out info to the log file every 1000000
+
+print "Done with equilibration" file info.dat

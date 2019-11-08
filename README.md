@@ -5,6 +5,9 @@ Guide for testers:
     * In linux shell:
       * `conda create -n mosdef37 -c mosdef -c conda-forge -c omnia mbuild foyer python=3.7 openbabel`
 1. Install mbuild_ONA.
+1. Compile mbuild_ONA.
+    * In linux shell:
+      * `pip install -e .`
 1. Refer to `example.py` or `example_from_mbuild.py`
 
 Thank you very much!
