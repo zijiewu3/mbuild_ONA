@@ -1,11 +1,69 @@
-#pycache and  distribution
-__pycache__/
-*.egg-info/
-#jupyter notebook cache
-.ipynb_checkpoints/
+*.py[cod]
+*.ipynb_checkpoints
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+.pypirc
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+htmlcov
+.cache
+.pytest_cache/
+
+# Translations
+*.mo
+
+# Complexity
+output/*.html
+output/*/index.html
+
+# Sphinx
+docs/_build
+
+# PyCharm
+.idea
+.idea/*
+
+# VSCode
+.vscode
+.vscode/*
+
+# Vagrant
+.vagrant
+Vagrantfile
+
+# rope project settings
+.ropeproject
+
+#conda version
+__conda_version__.txt
+
+#virtual env
+.env/
+
+# protobuf generated py file
+compound_pb2.py
+
 #test output of lammps files
 *.lammps
 *.lmp
-#test folder
-test/
-test*
+*.in
