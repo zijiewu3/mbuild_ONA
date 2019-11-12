@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-      name="mbuild_ONA",
+      name="mbuild_ona",
       install_requires="mbuild",
-      entry_points={
-                    "mbuild.plugins":[ "ONA_box = mbuild_ONA.mbuild_ONA:ONA_box"
-                        ]
-                    },
-                    py_modules=["mbuild_ONA"],
-                        )
+#      entry_points={
+#                    "mbuild.plugins":[ "ona_box = mbuild_ona.mbuild_ona:ona_box"
+#                        ]
+#                    },
+#                    py_modules=["mbuild_ona"],
+)
