@@ -6,6 +6,7 @@ class BB(mb.Compound):
     def __init__(self):
         super(BB, self).__init__(pos=[0.0, 0.0, 0.0], name='bb')
         self.r0BB = 0.084
+        self.r0BBHB = 0.037
         bead = mb.Particle(pos=[0.0, 0.0, 0.0], name='BB')
         self.add(bead)
 
@@ -13,7 +14,7 @@ class BB(mb.Compound):
         self.add(port, 'up')
         port = mb.Port(anchor=bead, orientation=[0, -1, 0], separation=self.r0BB / 2)
         self.add(port, 'down')
-        port = mb.Port(anchor=bead, orientation=[1, 1, 0], separation=self.r0BB / 2)
+        port = mb.Port(anchor=bead, orientation=[1, 0, 0], separation=self.r0BBHB / 2)
         self.add(port, 'toHB')
 
 
@@ -145,7 +146,7 @@ class DNA(mb.Compound):
         self.sequence = sequence
 
         if len(self.sequence) == 0:
-            ValueError('Sequence must not be empty')
+            raise ValueError('Sequence must not be empty')
 
         prev_base = get_NA(self.sequence[0])
         self.add(prev_base)
@@ -169,7 +170,7 @@ class DNA(mb.Compound):
     def print_seq(self):
         return str(self.sequence)
 
-
+    
     def visualize(self, show_ports=False):
         """Visualize the Compound using py3Dmol.
         Allows for visualization of a Compound within a Jupyter Notebook.
