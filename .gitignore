@@ -67,3 +67,7 @@ compound_pb2.py
 *.lammps
 *.lmp
 *.in
+*.lammpsdata
+
+
+

@@ -21,8 +21,9 @@ import tempfile
 from warnings import warn
 ##
 from mbuild.utils.io import run_from_ipython, import_
+import pytest
 
-@pytest.fixture
+
 def ona_box(sequence,dim):
     class ONA_box(mb.Compound):
         def __init__(self,sequences = [],dim = [0,0,0]):
@@ -65,7 +66,7 @@ def ona_box(sequence,dim):
             return view
         def write_lammps(self,filename):
         
-            cgff = Forcefield(forcefield_files='mbuild_ONA/ONA.xml')
+            cgff = Forcefield(forcefield_files='ONA.xml')
             #apply it to the mbuild structure
             test_box_typed =cgff.apply(self,assert_dihedral_params=False)
             #Output a LAMMPS data file
