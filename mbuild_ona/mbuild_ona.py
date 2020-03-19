@@ -10,55 +10,54 @@ class BB(mb.Compound):
         bead = mb.Particle(pos=[0.0, 0.0, 0.0], name='BB')
         self.add(bead)
 
-        port = mb.Port(anchor=bead, orientation=[0, 1, 0], separation=self.r0BB / 2)
+        port = mb.Port(anchor=bead, orientation=[
+                       0, 1, 0], separation=self.r0BB / 2)
         self.add(port, 'up')
-        port = mb.Port(anchor=bead, orientation=[0, -1, 0], separation=self.r0BB / 2)
+        port = mb.Port(anchor=bead, orientation=[
+                       0, -1, 0], separation=self.r0BB / 2)
         self.add(port, 'down')
-        port = mb.Port(anchor=bead, orientation=[1, 0, 0], separation=self.r0BBHB / 2)
+        port = mb.Port(anchor=bead, orientation=[
+                       1, 0, 0], separation=self.r0BBHB / 2)
         self.add(port, 'toHB')
 
 
 class BBA(BB):
     def __init__(self):
         super(BBA, self).__init__()
-        #Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBA'
         for p in self.particles():
             p.name = '_BBA'
-        #Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bba'
         self.name = '_bba'
-          
 
 
 class BBT(BB):
     def __init__(self):
         super(BBT, self).__init__()
-        #Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBA'
         for p in self.particles():
             p.name = '_BBT'
-        #Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bba'
         self.name = '_bbt'
-        
-        
-        
 
 
 class BBG(BB):
     def __init__(self):
         super(BBG, self).__init__()
-        #Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBA'
         for p in self.particles():
             p.name = '_BBG'
-        #Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bba'
         self.name = '_bbg'
 
 
 class BBC(BB):
     def __init__(self):
         super(BBC, self).__init__()
-        #Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBA'
         for p in self.particles():
             p.name = '_BBC'
-        #Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bba'
         self.name = '_bbc'
 
 
@@ -70,48 +69,48 @@ class HB(mb.Compound):
         bead = mb.Particle(pos=[0.0, 0.0, 0.0], name='HB')
         self.add(bead)
 
-        port = mb.Port(anchor=bead, orientation=[-1, 0, 0], separation=self.r0BBHB / 2)
+        port = mb.Port(
+            anchor=bead, orientation=[-1, 0, 0], separation=self.r0BBHB / 2)
         self.add(port, 'toBB')
 
 
 class HBA(HB):
     def __init__(self):
         super(HBA, self).__init__()
-        #Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBA'
         for p in self.particles():
             p.name = '_HBA'
-        #Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bba'
         self.name = '_hba'
 
 
 class HBT(HB):
     def __init__(self):
         super(HBT, self).__init__()
-        #Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBA'
         for p in self.particles():
             p.name = '_HBT'
-        #Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bba'
         self.name = '_hbt'
 
 
 class HBG(HB):
     def __init__(self):
         super(HBG, self).__init__()
-        #Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBA'
         for p in self.particles():
             p.name = '_HBG'
-        #Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bba'
         self.name = '_hbg'
-        
 
 
 class HBC(HB):
     def __init__(self):
         super(HBC, self).__init__()
-        #Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBA'
         for p in self.particles():
             p.name = '_HBC'
-        #Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bba'
         self.name = '_hbc'
 
 
@@ -203,11 +202,9 @@ class DNA(mb.Compound):
             )
             prev_base = current_base
 
-
     def print_seq(self):
         return str(self.sequence)
 
-    
     def visualize(self, show_ports=False):
         """Visualize the Compound using py3Dmol.
         Allows for visualization of a Compound within a Jupyter Notebook.
