@@ -1,6 +1,6 @@
 import mbuild as mb
-from foyer import Forcefield
 
+from mbuild.utils.io import run_from_ipython, import_
 
 class BB(mb.Compound):
     def __init__(self):
@@ -34,30 +34,30 @@ class BBA(BB):
 class BBT(BB):
     def __init__(self):
         super(BBT, self).__init__()
-        # Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBT'
         for p in self.particles():
             p.name = '_BBT'
-        # Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bbT'
         self.name = '_bbt'
 
 
 class BBG(BB):
     def __init__(self):
         super(BBG, self).__init__()
-        # Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBG'
         for p in self.particles():
             p.name = '_BBG'
-        # Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bbg'
         self.name = '_bbg'
 
 
 class BBC(BB):
     def __init__(self):
         super(BBC, self).__init__()
-        # Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_BBC'
         for p in self.particles():
             p.name = '_BBC'
-        # Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_bbc'
         self.name = '_bbc'
 
 
@@ -77,40 +77,40 @@ class HB(mb.Compound):
 class HBA(HB):
     def __init__(self):
         super(HBA, self).__init__()
-        # Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_HBA'
         for p in self.particles():
             p.name = '_HBA'
-        # Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_hba'
         self.name = '_hba'
 
 
 class HBT(HB):
     def __init__(self):
         super(HBT, self).__init__()
-        # Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_HBT'
         for p in self.particles():
             p.name = '_HBT'
-        # Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_hbt'
         self.name = '_hbt'
 
 
 class HBG(HB):
     def __init__(self):
         super(HBG, self).__init__()
-        # Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_HBG'
         for p in self.particles():
             p.name = '_HBG'
-        # Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_hbg'
         self.name = '_hbg'
 
 
 class HBC(HB):
     def __init__(self):
         super(HBC, self).__init__()
-        # Name the actual child particle that will be seen by atomtyping to '_BBA'
+        # Name the actual child particle that will be seen by atomtyping to '_HBC'
         for p in self.particles():
             p.name = '_HBC'
-        # Name the entire compound (particle+its ports) to '_bba'
+        # Name the entire compound (particle+its ports) to '_hbc'
         self.name = '_hbc'
 
 
@@ -177,13 +177,13 @@ def get_NA(type='A'):
 
 
 class DNA(mb.Compound):
+    """Create a DNA single strand. """
     def __init__(self, sequence=None):
         super(DNA, self).__init__()
         self.sequence = sequence
 
         if len(self.sequence) == 0:
             raise ValueError('Sequence must not be empty')
-
         prev_base = get_NA(self.sequence[0])
         self.add(prev_base)
 
@@ -201,42 +201,53 @@ class DNA(mb.Compound):
                 to_positions=(prev_base.all_ports())[-1],
             )
             prev_base = current_base
+    def visualize(self):
+        return _visualize(self)
 
-    def print_seq(self):
-        return str(self.sequence)
+class DNA_ds(mb.Compound):
+    '''Create a DNA double strand'''
+    def __init__(self, sequence=None):
+        super(DNA_ds, self).__init__()
+        self.sequence = sequence
+        if len(self.sequence) == 0:
+            raise ValueError('Sequence must not be empty')
+        self.add(DNA(sequence))
+        comp = ''
+        comp_pairs = {'A':'T','T':'A','G':'C','C':'G'}
+        for base in self.sequence:
+            comp = comp+comp_pairs[base]
+        comp_strand = DNA(comp)
+        comp_strand.translate([0.08,0,0])
+        comp_strand.spin(3.14159,[0,1,0])
+        self.add(comp_strand)
 
-    def visualize(self, show_ports=False):
-        """Visualize the Compound using py3Dmol.
+    def visualize(self):
+        return _visualize(self)
+
+def _visualize(ONAtop):
+        """Visualize an mbuild_ONA Compound using py3Dmol.
         Allows for visualization of a Compound within a Jupyter Notebook.
-        Parameters
-        ----------
-        show_ports : bool, optional, default=False
-            Visualize Ports in addition to Particles
-        color_scheme : dict, optional
-            Specify coloring for non-elemental particles
-            keys are strings of the particle names
-            values are strings of the colors
-            i.e. {'_CGBEAD': 'blue'}
+        
         Returns
         ------
         view : py3Dmol.view
         """
         py3Dmol = import_('py3Dmol')
 
-        for particle in self.particles():
+        for particle in ONAtop.particles():
             if not particle.name:
                 particle.name = 'UNK'
 
         view = py3Dmol.view()
         rad = {
-            '_BBA': 0.5,
-            '_BBC': 0.5,
-            '_BBG': 0.5,
-            '_BBT': 0.5,
-            '_HBA': 0.22,
-            '_HBC': 0.22,
-            '_HBG': 0.22,
-            '_HBT': 0.22,
+            '_BBA': 0.05,
+            '_BBC': 0.05,
+            '_BBG': 0.05,
+            '_BBT': 0.05,
+            '_HBA': 0.022,
+            '_HBC': 0.022,
+            '_HBG': 0.022,
+            '_HBT': 0.022,
         }
         col = {
             '_BBA': '0xff0000',
@@ -249,7 +260,7 @@ class DNA(mb.Compound):
             '_HBT': '0xd2691e',
         }
 
-        for p in self.particles(include_ports=False):
+        for p in ONAtop.particles(include_ports=False):
             view.addSphere(
                 {
                     'center': {'x': p.pos[0], 'y': p.pos[1], 'z': p.pos[2]},

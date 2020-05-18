@@ -1,0 +1,54 @@
+;
+;   File onabox.top  was generated
+;   By user: zijiewu (1000)
+;   On host: LAPTOP-0F5E25JO
+;   At date: Thu. May  4 13:55:43 2020
+;
+;   This is a standalone topology file
+;
+;   Created by:
+;   ParmEd:       pytest, VERSION 3.2.0
+;   Executable:   pytest
+;   Library dir:  /usr/local/gromacs/share/gromacs/top
+;   Command line:
+;     /home/zijiewu/anaconda3/envs/mosdef_git/bin/pytest -vv test_onaBox.py
+;
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               2               yes             1            1           
+
+[ atomtypes ]
+; name    at.num    mass    charge ptype  sigma      epsilon
+               0   0.000000  0.00000000  A              0              0
+
+
+[ moleculetype ]
+; Name            nrexcl
+RES          3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr    charge       mass  typeB    chargeB      massB
+; residue    1 RES rtp RES q 0.0
+    1                 1    RES   _BBA      1 0.00000000   0.000000   ; qtot 0.000000
+    2                 1    RES   _HBA      2 0.00000000   0.000000   ; qtot 0.000000
+    3                 1    RES   _BBT      3 0.00000000   0.000000   ; qtot 0.000000
+    4                 1    RES   _HBT      4 0.00000000   0.000000   ; qtot 0.000000
+    5                 1    RES   _BBG      5 0.00000000   0.000000   ; qtot 0.000000
+    6                 1    RES   _HBG      6 0.00000000   0.000000   ; qtot 0.000000
+
+[ bonds ]
+;    ai     aj funct         c0         c1         c2         c3
+      3      1     1
+      3      5     1
+      2      1     1
+      3      4     1
+      5      6     1
+
+[ system ]
+; Name
+Generic title
+
+[ molecules ]
+; Compound       #mols
+RES                  2

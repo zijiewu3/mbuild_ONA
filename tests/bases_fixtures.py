@@ -1,26 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
-
-
-from __future__ import print_function
 import mbuild as mb
-import builtins as __builtin__
 import numpy as np
-from foyer import Forcefield
-# All the old import from compound
-# import collections
-# from collections import OrderedDict, defaultdict
-from copy import deepcopy
-import itertools
-import pytest
-import os
-import sys
-import tempfile
-from warnings import warn
-##
-from mbuild.utils.io import run_from_ipython, import_
+
 import pytest
 
 

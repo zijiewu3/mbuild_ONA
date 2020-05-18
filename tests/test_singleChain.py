@@ -9,7 +9,7 @@ def test_sc_sequence():
     for na in chain.children:
         name_list.append(na.name)
     assert name_list == ['NAA', 'NAT', 'NAG',
-                         'NAC'] and chain.print_seq() == 'ATGC'
+                         'NAC'] and chain.sequence == 'ATGC'
 
 
 def test_sc_particles():
@@ -40,3 +40,10 @@ def test_bonds_twoResidue():
     thirdBond = frozenset(bonds[2])
     assert len(bonds) == 3 and set([firstBond, secondBond, thirdBond]) == set(
         [frozenset([pl[0], pl[1]]), frozenset([pl[2], pl[3]]), frozenset([pl[0], pl[2]])])
+
+def test_doubleStrand():
+    ds = mb.recipes.DNA_ds('AG')
+    chain_list = []
+    for chain in ds.children:
+        chain_list.append(chain)
+    assert len(chain_list) == 2 and chain_list[0].sequence == 'AG' and chain_list[1].sequence == 'TC'
