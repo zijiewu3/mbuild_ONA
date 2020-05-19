@@ -1,0 +1,7 @@
+# jupyter notebook
+
+*.ipynb
+
+# Old create ona_box
+
+create_ona_box.py
